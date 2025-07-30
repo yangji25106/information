@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>수행평가 알림</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>📚 수행평가 알림</h1>
+
+    <form id="taskForm">
+      <input type="text" id="title" placeholder="수행평가 제목" required />
+      <input type="text" id="subject" placeholder="과목명" required />
+      <input type="date" id="date" required />
+      <button type="submit">등록</button>
+    </form>
+
+    <ul id="taskList"></ul>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
