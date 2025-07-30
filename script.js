@@ -78,3 +78,4 @@ function deleteTask(index) {
   renderTasks();
 }
 
+
