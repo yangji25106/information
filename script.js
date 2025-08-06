@@ -1,5 +1,7 @@
 const taskForm = document.getElementById('taskForm');
 const taskList = document.getElementById('taskList');
+const task = { id: Date.now(), title, subject, date };
+
 
 let isAdmin = false;
 const ADMIN_PASSWORD = "1234"; // 원하는 비밀번호로 바꿔도 됩니다
@@ -50,16 +52,17 @@ function renderTasks() {
   tasks.sort((a, b) => new Date(a.date) - new Date(b.date));
   taskList.innerHTML = '';
 
-  tasks.forEach((task, index) => {
+  tasks.forEach(task => {
     const li = document.createElement('li');
     const dday = getDday(task.date);
     li.innerHTML = `
       ${task.date} - [${task.subject}] ${task.title} (${dday})
-      ${isAdmin ? `<button class="delete-btn" onclick="deleteTask(${index})">❌</button>` : ''}
+      ${isAdmin ? `<button class="delete-btn" onclick="deleteTask(${task.id})">❌</button>` : ''}
     `;
     taskList.appendChild(li);
   });
 }
+
 
 // 저장
 function saveTask(task) {
@@ -69,11 +72,10 @@ function saveTask(task) {
 }
 
 // 삭제
-function deleteTask(index) {
+function deleteTask(taskId) {
   if (!isAdmin) return;
-
-  const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
-  tasks.splice(index, 1);
+  let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+  tasks = tasks.filter(task => task.id !== taskId);  // ID로 삭제
   localStorage.setItem("tasks", JSON.stringify(tasks));
   renderTasks();
 }
