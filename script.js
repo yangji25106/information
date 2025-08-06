@@ -4,7 +4,6 @@ const taskList = document.getElementById('taskList');
 let isAdmin = false;
 const ADMIN_PASSWORD = "1234";
 
-// D-day 계산
 function getDday(dateStr) {
   const today = new Date();
   const targetDate = new Date(dateStr);
@@ -15,7 +14,6 @@ function getDday(dateStr) {
   else return `D+${Math.abs(diffDays)}`;
 }
 
-// 관리자 로그인
 function login() {
   const input = document.getElementById("adminPass").value;
   if (input === ADMIN_PASSWORD) {
@@ -28,7 +26,6 @@ function login() {
   }
 }
 
-// 저장된 목록 불러오기
 window.onload = renderTasks;
 
 taskForm.addEventListener('submit', function (e) {
@@ -38,12 +35,14 @@ taskForm.addEventListener('submit', function (e) {
   const title = document.getElementById('title').value;
   const subject = document.getElementById('subject').value;
   const date = document.getElementById('date').value;
+  const color = document.getElementById('color').value;
 
   const task = {
-    id: Date.now(), // 고유 ID 부여
+    id: Date.now(),
     title,
     subject,
-    date
+    date,
+    color
   };
 
   const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
@@ -53,7 +52,6 @@ taskForm.addEventListener('submit', function (e) {
   taskForm.reset();
 });
 
-// 렌더링 함수
 function renderTasks() {
   const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
   tasks.sort((a, b) => new Date(a.date) - new Date(b.date));
@@ -62,6 +60,8 @@ function renderTasks() {
   tasks.forEach(task => {
     const li = document.createElement('li');
     const dday = getDday(task.date);
+    li.style.backgroundColor = task.color || '#e9ecef';
+
     li.innerHTML = `
       ${task.date} - [${task.subject}] ${task.title} (${dday})
       ${isAdmin ? `<button class="delete-btn" onclick="deleteTask(${task.id})">❌</button>` : ''}
@@ -70,11 +70,10 @@ function renderTasks() {
   });
 }
 
-// 삭제 함수
 function deleteTask(taskId) {
   if (!isAdmin) return;
   let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
-  tasks = tasks.filter(task => task.id !== taskId); // ID로 정확하게 삭제
+  tasks = tasks.filter(task => task.id !== taskId);
   localStorage.setItem("tasks", JSON.stringify(tasks));
   renderTasks();
 }
