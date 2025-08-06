@@ -1,12 +1,10 @@
 const taskForm = document.getElementById('taskForm');
 const taskList = document.getElementById('taskList');
-const task = { id: Date.now(), title, subject, date };
-
 
 let isAdmin = false;
-const ADMIN_PASSWORD = "1234"; // 원하는 비밀번호로 바꿔도 됩니다
+const ADMIN_PASSWORD = "1234";
 
-// 날짜 차이 계산
+// D-day 계산
 function getDday(dateStr) {
   const today = new Date();
   const targetDate = new Date(dateStr);
@@ -24,6 +22,7 @@ function login() {
     isAdmin = true;
     taskForm.style.display = "flex";
     alert("관리자 로그인 성공!");
+    renderTasks();
   } else {
     alert("비밀번호가 틀렸습니다.");
   }
@@ -40,13 +39,21 @@ taskForm.addEventListener('submit', function (e) {
   const subject = document.getElementById('subject').value;
   const date = document.getElementById('date').value;
 
-  const task = { title, subject, date };
-  saveTask(task);
+  const task = {
+    id: Date.now(), // 고유 ID 부여
+    title,
+    subject,
+    date
+  };
+
+  const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+  tasks.push(task);
+  localStorage.setItem("tasks", JSON.stringify(tasks));
   renderTasks();
   taskForm.reset();
 });
 
-// 리스트 그리기
+// 렌더링 함수
 function renderTasks() {
   const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
   tasks.sort((a, b) => new Date(a.date) - new Date(b.date));
@@ -63,21 +70,11 @@ function renderTasks() {
   });
 }
 
-
-// 저장
-function saveTask(task) {
-  const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
-  tasks.push(task);
-  localStorage.setItem("tasks", JSON.stringify(tasks));
-}
-
-// 삭제
+// 삭제 함수
 function deleteTask(taskId) {
   if (!isAdmin) return;
   let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
-  tasks = tasks.filter(task => task.id !== taskId);  // ID로 삭제
+  tasks = tasks.filter(task => task.id !== taskId); // ID로 정확하게 삭제
   localStorage.setItem("tasks", JSON.stringify(tasks));
   renderTasks();
 }
-
-
