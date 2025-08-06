@@ -1,3 +1,6 @@
+localStorage.removeItem("tasks");
+
+
 const taskForm = document.getElementById('taskForm');
 const taskList = document.getElementById('taskList');
 
