@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -10,19 +9,22 @@
   <div class="container">
     <h1>📚 수행평가 알림</h1>
 
-    <div id="authSection">
-      <input type="password" id="adminPass" placeholder="관리자 비밀번호" />
-      <button onclick="login()">관리자 로그인</button>
-    </div>
-
+    <!-- 추가 폼 -->
     <form id="taskForm" style="display:none;">
       <input type="text" id="title" placeholder="수행평가 제목" required />
       <input type="text" id="subject" placeholder="과목명" required />
       <input type="date" id="date" required />
+      <input type="color" id="color" value="#e9ecef" />
       <button type="submit">등록</button>
     </form>
 
     <ul id="taskList"></ul>
+  </div>
+
+  <!-- 로그인 섹션은 맨 아래로 이동 -->
+  <div class="container" id="authSection">
+    <input type="password" id="adminPass" placeholder="관리자 비밀번호" />
+    <button onclick="login()">관리자 로그인</button>
   </div>
 
   <script src="script.js"></script>
