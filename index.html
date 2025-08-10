@@ -2,41 +2,38 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>수행평가 알림 (Firebase Realtime DB)</title>
-  <style>
-    body { font-family: Arial, sans-serif; padding: 20px; max-width: 600px; margin: auto; background: #f9f9f9; }
-    input, button { padding: 8px; margin: 4px 0; width: 100%; box-sizing: border-box; }
-    .task { margin: 8px 0; padding: 8px; border-radius: 6px; color: white; display: flex; justify-content: space-between; align-items: center; }
-    .delete-btn { background: #e53e3e; border: none; padding: 4px 8px; cursor: pointer; border-radius: 4px; }
-  </style>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<h2>수행평가 알림</h2>
+  <div class="container">
+    <h2>📚 수행평가 알림</h2>
 
-<div id="login-section">
-  <input type="password" id="adminPass" placeholder="관리자 비밀번호 입력" />
-  <button id="loginBtn">로그인</button>
-</div>
+    <div id="login-section" class="card">
+      <input type="password" id="adminPass" placeholder="관리자 비밀번호 입력" />
+      <button id="loginBtn">로그인</button>
+    </div>
 
-<div id="add-section" style="display:none;">
-  <input type="text" id="taskTitle" placeholder="수행평가 제목" />
-  <input type="text" id="taskSubject" placeholder="과목명" />
-  <input type="date" id="taskDate" />
-  <input type="color" id="taskColor" value="#4a90e2" />
-  <button id="addTaskBtn">수행평가 추가</button>
-  <button id="logoutBtn" style="margin-top:10px;">로그아웃</button>
-</div>
+    <div id="add-section" class="card" style="display:none;">
+      <input type="text" id="taskTitle" placeholder="수행평가 제목" />
+      <input type="text" id="taskSubject" placeholder="과목명" />
+      <input type="date" id="taskDate" />
+      <input type="color" id="taskColor" value="#4a90e2" />
+      <button id="addTaskBtn">수행평가 추가</button>
+      <button id="logoutBtn" style="margin-top:10px;">로그아웃</button>
+    </div>
 
-<h3>수행평가 목록</h3>
-<div id="taskList"></div>
+    <h3>수행평가 목록</h3>
+    <div id="taskList"></div>
+  </div>
 
-<!-- Firebase SDK -->
-<script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-database.js"></script>
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-database.js"></script>
 
-<!-- 별도 JS 파일 로드 -->
-<script src="script.js"></script>
-
+  <!-- 프로젝트 JS (반드시 Firebase SDK 로드 다음에) -->
+  <script src="script.js"></script>
 </body>
 </html>
