@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>수행평가 알림 (Firebase Realtime DB)</title>
+  <title>1-6 수행평가&주요일정 알림</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
   <div class="container">
-    <h2>📚 수행평가 알림</h2>
+    <h2>📚 수행평가&주요일정 알림</h2>
 
     <div id="add-section" class="card" style="display:none;">
       <input type="text" id="taskTitle" placeholder="수행평가 제목" />
@@ -20,7 +20,7 @@
       <button id="logoutBtn" style="margin-top:10px;">로그아웃</button>
     </div>
 
-    <h3>수행평가 목록</h3>
+    <h3>수행평가&주요일정 목록</h3>
     <div id="taskList"></div>
   </div>
 
@@ -29,7 +29,7 @@
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 
   <div id="login-section" class="card">
-    <input type="password" id="adminPass" placeholder="관리자 비밀번호 입력" />
+    <input type="password" id="adminPass" placeholder="관리자 비밀번호" />
     <button id="loginBtn">로그인</button>
   </div>
 
