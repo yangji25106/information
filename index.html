@@ -11,11 +11,6 @@
   <div class="container">
     <h2>📚 수행평가 알림</h2>
 
-    <div id="login-section" class="card">
-      <input type="password" id="adminPass" placeholder="관리자 비밀번호 입력" />
-      <button id="loginBtn">로그인</button>
-    </div>
-
     <div id="add-section" class="card" style="display:none;">
       <input type="text" id="taskTitle" placeholder="수행평가 제목" />
       <input type="text" id="taskSubject" placeholder="과목명" />
@@ -32,6 +27,12 @@
   <!-- Firebase SDK -->
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+
+  <div id="login-section" class="card">
+    <input type="password" id="adminPass" placeholder="관리자 비밀번호 입력" />
+    <button id="loginBtn">로그인</button>
+  </div>
+
 
   <!-- 프로젝트 JS (반드시 Firebase SDK 로드 다음에) -->
   <script src="script.js"></script>
