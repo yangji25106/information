@@ -15,7 +15,7 @@ firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
 
 // 관리자 비밀번호 (원하는 값으로 바꿔주세요)
-const ADMIN_PASSWORD = "1234";
+const ADMIN_PASSWORD = "yangji106!";
 
 // DOM 요소
 const loginSection = document.getElementById('login-section');
